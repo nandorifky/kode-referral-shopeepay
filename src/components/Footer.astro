@@ -2,32 +2,24 @@
 const today = new Date();
 ---
 
-<footer class="border-t border-white/5 bg-black pt-12 pb-8 text-center md:text-left mt-auto">
-    <div class="max-w-6xl mx-auto px-4">
-        
+<footer class="border-t border-white/5 bg-black pt-12 pb-8">
+    <div class="max-w-6xl mx-auto px-4 text-center md:text-left">
         <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
             <div class="text-2xl font-display font-bold text-white tracking-tight flex items-center gap-2">
                 <i class="ph-fill ph-wallet text-shopee"></i>
                 <span>SPay<span class="text-shopee">Ref</span></span>
             </div>
-            
             <div class="flex gap-6 text-sm text-gray-500 font-medium">
-                <a href="/" class="hover:text-shopee transition-colors">Home</a>
-                <a href="/blog" class="hover:text-shopee transition-colors">Blog</a>
-                <a href="/about" class="hover:text-shopee transition-colors">About</a>
+                <button class="hover:text-shopee transition-colors bg-transparent border-none cursor-pointer">Terms</button>
+                <button class="hover:text-shopee transition-colors bg-transparent border-none cursor-pointer">Privacy</button>
+                <a href="https://shopee.co.id" target="_blank" rel="nofollow noopener sponsored" class="hover:text-shopee transition-colors decoration-transparent text-gray-500">Shopee Official</a>
             </div>
         </div>
-
         <p class="text-xs text-gray-600 max-w-2xl leading-relaxed mx-auto md:mx-0">
-            <strong>Disclaimer & Disclosure:</strong> Situs ini adalah landing page partner afiliasi independen dan bukan situs resmi PT AirPay International Indonesia. Seluruh aset merek dagang (Shopee, ShopeePay) adalah milik pemegang hak resminya masing-masing.
+            <strong>Disclaimer & Disclosure:</strong> Situs ini adalah landing page partner afiliasi independen dan bukan situs resmi PT AirPay International Indonesia. Seluruh aset merek dagang (Shopee, ShopeePay) adalah milik pemegang hak resminya masing-masing. Kode <span class="text-gray-500 font-mono">JL3D5DYVW</span> disediakan untuk tujuan promosi mutual yang memberikan keuntungan bagi Referrer & Referral sesuai S&K yang berlaku.
         </p>
-
         <p class="mt-8 text-[10px] text-gray-700 text-center border-t border-white/5 pt-4">
-            &copy; {today.getFullYear()} Nando Rifky. All rights reserved.
+            &copy; {today.getFullYear()} Kode Referral ShopeePay. All rights reserved.
         </p>
     </div>
 </footer>
-
-<style>
-    a { text-decoration: none; }
-</style>
