@@ -1,8 +1,13 @@
 import { config, fields, collection } from '@keystatic/core';
 
 export default config({
-  storage: {
-    kind: 'local',
+storage: {
+    kind: 'cloud',
+  },
+  cloud: {
+    // Ganti 'team-kamu/nama-project' dengan yang kamu copy dari dashboard keystatic.cloud
+    // Contoh: 'nando-rifky/shopeepay-blog'
+    project: 'shopeepay/referral-shopeepay', 
   },
   collections: {
     posts: collection({

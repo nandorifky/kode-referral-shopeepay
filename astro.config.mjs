@@ -14,8 +14,9 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://shopeepayreferral.web',
   integrations: [mdx(), sitemap(), keystatic(), react()],
+  
   adapter: cloudflare(),
 
   vite: {
