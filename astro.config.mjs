@@ -5,12 +5,13 @@ import sitemap from '@astrojs/sitemap';
 import keystatic from '@keystatic/astro';
 import react from '@astrojs/react';
 import cloudflare from '@astrojs/cloudflare';
-import tailwind from '@astrojs/tailwind'; // <--- Ini import yang BENAR untuk v3
+import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://shopeepayreferral.web.id',
   
+  // HAPUS output: 'hybrid'. Astro 5 otomatis tau dari adapter.
   adapter: cloudflare(),
   
   integrations: [
@@ -18,8 +19,6 @@ export default defineConfig({
     sitemap(), 
     keystatic(), 
     react(),
-    tailwind() // <--- Tailwind masuk di sini sebagai integrasi
+    tailwind()
   ],
-  
-  // BAGIAN VITE PLUGINS DI HAPUS KARENA ITU UNTUK V4
 });
