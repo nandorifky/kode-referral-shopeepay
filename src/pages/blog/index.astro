@@ -6,119 +6,126 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
+// Ambil data blog, urutkan dari yang terbaru
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="id">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-                /* Tambahan agar gambar rapi */
-                width: 100%; 
-                height: auto;
-                object-fit: cover;
-                aspect-ratio: 16/9;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
+		<BaseHead title={`Blog - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+        <style>
+            /* --- TEMA DARK MODE PREMIUM --- */
+            body {
+                background-color: #050505; /* Hitam Pekat */
+                color: #e0e0e0;
+                font-family: 'Inter', sans-serif;
+                /* Pattern Grid Halus di Background */
+                background-image: 
+                    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+                background-size: 40px 40px;
+            }
+            
+            .font-display { font-family: 'Outfit', sans-serif; }
+
+            /* Efek Teks Gradient (Warna Shopee) */
+            .text-gradient {
+                background: linear-gradient(135deg, #EE4D2D 0%, #ff9f43 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        </style>
 	</head>
-	<body>
+	
+    <body class="antialiased selection:bg-[#EE4D2D] selection:text-white">
 		<Header />
-		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
-                                    {/* PERBAIKAN DI SINI: Akses .src dan .alt */}
-									{post.data.heroImage && (
-										<img 
-                                            width={720} 
-                                            height={360} 
+		
+        <main class="min-h-screen pb-20">
+            
+            <section class="relative pt-32 pb-16 px-4 text-center overflow-hidden">
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#EE4D2D]/20 blur-[120px] rounded-full pointer-events-none"></div>
+                
+                <div class="relative z-10 max-w-4xl mx-auto">
+                    <span class="inline-block py-1 px-3 rounded-full bg-[#EE4D2D]/10 border border-[#EE4D2D]/20 text-[#EE4D2D] text-xs font-bold tracking-widest uppercase mb-4">
+                        Pusat Informasi
+                    </span>
+                    <h1 class="font-display text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                        Tips & Trik <br class="md:hidden" /> <span class="text-gradient">Cuan Digital</span>
+                    </h1>
+                    <p class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                        Kumpulan panduan terbaru seputar ShopeePay, cara klaim bonus referral, solusi masalah verifikasi, dan strategi memaksimalkan profit.
+                    </p>
+                </div>
+            </section>
+
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+					
+                    {posts.map((post) => (
+                        /* CARD ARTIKEL */
+						<article class="group relative bg-[#121212] border border-white/10 rounded-2xl overflow-hidden hover:border-[#EE4D2D]/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#EE4D2D]/10 flex flex-col h-full">
+                            
+                            <a href={`/blog/${post.id}/`} class="block flex-1">
+                                <div class="relative aspect-video overflow-hidden bg-gray-900">
+                                    {post.data.heroImage && (
+                                        <img 
                                             src={post.data.heroImage.src} 
-                                            alt={post.data.heroImage.alt || ""} 
+                                            alt={post.data.heroImage.alt || post.data.title}
+                                            width="720" 
+                                            height="360"
+                                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                            loading="lazy"
                                         />
-									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
+                                    )}
+                                    
+                                    <div class="absolute inset-0 bg-gradient-to-t from-[#121212] to-transparent opacity-60"></div>
+                                    
+                                    {post.data.tags && post.data.tags.length > 0 && (
+                                        <div class="absolute top-4 left-4">
+                                            <span class="bg-black/60 backdrop-blur-md border border-white/10 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                                {post.data.tags[0]}
+                                            </span>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div class="p-6 flex flex-col gap-3">
+                                    <div class="flex items-center gap-2 text-xs text-gray-500">
+                                        <i class="ph-fill ph-calendar-blank text-[#EE4D2D]"></i>
+                                        <FormattedDate date={post.data.pubDate} />
+                                    </div>
+
+                                    <h2 class="font-display text-xl font-bold text-white group-hover:text-[#EE4D2D] transition-colors line-clamp-2">
+                                        {post.data.title}
+                                    </h2>
+
+                                    <p class="text-sm text-gray-400 line-clamp-3 leading-relaxed">
+                                        {post.data.description || "Klik untuk membaca selengkapnya..."}
+                                    </p>
+                                </div>
+                            </a>
+
+                            <div class="px-6 pb-6 mt-auto">
+                                <a href={`/blog/${post.id}/`} class="inline-flex items-center gap-2 text-sm font-medium text-[#EE4D2D] group-hover:gap-3 transition-all">
+                                    Baca Artikel <i class="ph-bold ph-arrow-right"></i>
+                                </a>
+                            </div>
+
+						</article>
+					))}
+
+				</div>
 			</section>
+
 		</main>
+
 		<Footer />
 	</body>
 </html>
