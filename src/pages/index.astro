@@ -75,30 +75,24 @@
                             border: '#262626'
                         }
                     },
-animation: {
-                    'glow': 'glow 3s ease-in-out infinite alternate',
-                    'float': 'float 6s ease-in-out infinite',
-                    'slide-in': 'slideIn 0.3s ease-out forwards',
-                    'fade-in': 'fadeIn 0.5s ease-out forwards', // <--- Tambahan Baru
-                },
-                keyframes: {
-                    glow: {
-                        '0%': { boxShadow: '0 0 20px -10px #EE4D2D' },
-                        '100%': { boxShadow: '0 0 30px 5px rgba(238, 77, 45, 0.4)' }
+                    animation: {
+                        'glow': 'glow 3s ease-in-out infinite alternate',
+                        'float': 'float 6s ease-in-out infinite',
+                        'slide-in': 'slideIn 0.3s ease-out forwards',
                     },
-                    float: {
-                        '0%, 100%': { transform: 'translateY(0)' },
-                        '50%': { transform: 'translateY(-10px)' },
-                    },
-                    slideIn: {
-                        '0%': { transform: 'translateX(100%)' },
-                        '100%': { transform: 'translateX(0)' },
-                    },
-                    // <--- Tambahan Baru
-                    fadeIn: {
-                        '0%': { opacity: '0', transform: 'translateY(10px)' },
-                        '100%': { opacity: '1', transform: 'translateY(0)' },
-                    }
+                    keyframes: {
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px -10px #EE4D2D' },
+                            '100%': { boxShadow: '0 0 30px 5px rgba(238, 77, 45, 0.4)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        slideIn: {
+                            '0%': { transform: 'translateX(100%)' },
+                            '100%': { transform: 'translateX(0)' },
+                        }
                     }
                 }
             }
@@ -1303,73 +1297,72 @@ animation: {
         </div>
         
         <!-- Script for Polling Interaction -->
-<script>
-/* --- LOGIKA POLLING (PINDAHAN) --- */
-function submitVote(choice) {
-    const container = document.getElementById('poll-options');
-    
-    // Data Hasil Polling (Settingan Persuasi)
-    const results = [
-        { name: "ShopeePay", percent: 65, color: "bg-shopee", icon: "ph-crown" },
-        { name: "GoPay", percent: 15, color: "bg-green-500", icon: "ph-wallet" },
-        { name: "OVO", percent: 12, color: "bg-purple-500", icon: "ph-coins" },
-        { name: "DANA", percent: 8, color: "bg-blue-500", icon: "ph-paper-plane-tilt" }
-    ];
-    
-    // LOGIKA PESAN DINAMIS
-    let message = "";
-    if (choice === 0) {
-        // Jika user pilih ShopeePay
-        message = "<strong>Pilihan Tepat!</strong> Kamu sependapat dengan 12,849 user lain yang memilih ShopeePay.";
-    } else {
-        // Jika user pilih Kompetitor (GoPay/OVO/Dana)
-        const chosenName = results[choice].name;
-        message = `Terima kasih suaranya! Meski kamu memilih <strong>${chosenName}</strong>, data menunjukkan 65% user lebih cuan pakai ShopeePay.`;
-    }
-    
-    let html = '<div class="space-y-4 pt-2 animate-fade-in">';
-    results.forEach((res, index) => {
-        const isUserChoice = index === choice;
+<script is:inline>
+    function submitVote(choice) {
+        const container = document.getElementById('poll-options');
         
-        html += `
-            <div class="relative">
-                <div class="flex justify-between text-xs mb-1.5 px-1">
-                    <span class="flex items-center gap-1.5 text-gray-300 font-bold">
-                        <i class="ph-fill ${res.icon} ${index === 0 ? 'text-shopee' : 'text-gray-500'}"></i> ${res.name}
-                        ${isUserChoice ? '<span class="bg-white/10 text-[10px] px-1.5 py-0.5 rounded text-white ml-2 border border-white/10">Pilihanmu</span>' : ''}
-                    </span>
-                    <span class="font-mono text-white font-bold">${res.percent}%</span>
-                </div>
-                <div class="h-2.5 w-full bg-gray-800 rounded-full overflow-hidden">
-                    <div id="bar-${index}" style="width: 0%" class="h-full ${res.color} rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(0,0,0,0.5)]"></div>
-                </div>
-            </div>
-        `;
-    });
-    
-    // Add final CTA button after vote
-    html += `
-        <div class="mt-8 text-center pt-4 border-t border-gray-800">
-            <p class="text-xs text-gray-400 mb-4 leading-relaxed">${message}</p>
-            <a href="https://pay.u.shopee.co.id/5bbddxE"
-               onclick="handleAffiliateClick(event)"
-               rel="sponsored noopener noreferrer"
-               class="bg-shopee hover:bg-shopee-dark text-white font-bold py-3 px-8 rounded-lg transition-all inline-flex items-center gap-2 shadow-lg shadow-shopee/20 hover:shadow-shopee/40 hover:-translate-y-0.5 no-underline cursor-pointer">
-                <i class="ph-bold ph-check-circle"></i> Ambil Bonus ShopeePay
-            </a>
-        </div>
-    </div>`; // Penutup div utama
-    
-    container.innerHTML = html;
-    
-    // Animate bars
-    setTimeout(() => {
+        // Data Hasil Polling (Settingan Persuasi)
+        const results = [
+            { name: "ShopeePay", percent: 65, color: "bg-shopee", icon: "ph-crown" },
+            { name: "GoPay", percent: 15, color: "bg-green-500", icon: "ph-wallet" },
+            { name: "OVO", percent: 12, color: "bg-purple-500", icon: "ph-coins" },
+            { name: "DANA", percent: 8, color: "bg-blue-500", icon: "ph-paper-plane-tilt" }
+        ];
+        
+        // LOGIKA PESAN DINAMIS
+        let message = "";
+        if (choice === 0) {
+            // Jika user pilih ShopeePay
+            message = "<strong>Pilihan Tepat!</strong> Kamu sependapat dengan 12,849 user lain yang memilih ShopeePay.";
+        } else {
+            // Jika user pilih Kompetitor (GoPay/OVO/Dana)
+            const chosenName = results[choice].name;
+            message = `Terima kasih suaranya! Meski kamu memilih <strong>${chosenName}</strong>, data menunjukkan 65% user lebih cuan pakai ShopeePay.`;
+        }
+        
+        let html = '<div class="space-y-4 pt-2 animate-fade-in">';
         results.forEach((res, index) => {
-            const bar = document.getElementById(`bar-${index}`);
-            if(bar) bar.style.width = res.percent + '%';
+            const isUserChoice = index === choice;
+            
+            html += `
+                <div class="relative">
+                    <div class="flex justify-between text-xs mb-1.5 px-1">
+                        <span class="flex items-center gap-1.5 text-gray-300 font-bold">
+                            <i class="ph-fill ${res.icon} ${index === 0 ? 'text-shopee' : 'text-gray-500'}"></i> ${res.name}
+                            ${isUserChoice ? '<span class="bg-white/10 text-[10px] px-1.5 py-0.5 rounded text-white ml-2 border border-white/10">Pilihanmu</span>' : ''}
+                        </span>
+                        <span class="font-mono text-white font-bold">${res.percent}%</span>
+                    </div>
+                    <div class="h-2.5 w-full bg-gray-800 rounded-full overflow-hidden">
+                        <div id="bar-${index}" style="width: 0%" class="h-full ${res.color} rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(0,0,0,0.5)]"></div>
+                    </div>
+                </div>
+            `;
         });
-    }, 100);
-}
+        
+        // Add final CTA button after vote (PESAN DINAMIS DIMASUKKAN DI SINI)
+        html += `
+            <div class="mt-8 text-center pt-4 border-t border-gray-800">
+                <p class="text-xs text-gray-400 mb-4 leading-relaxed">${message}</p>
+<a href="https://pay.u.shopee.co.id/5bbddxE"
+   onclick="handleAffiliateClick(event)"
+   rel="sponsored noopener noreferrer"
+   class="bg-shopee hover:bg-shopee-dark text-white font-bold py-3 px-8 rounded-lg transition-all inline-flex items-center gap-2 shadow-lg shadow-shopee/20 hover:shadow-shopee/40 hover:-translate-y-0.5 no-underline cursor-pointer">
+    <i class="ph-bold ph-check-circle"></i> Ambil Bonus ShopeePay
+</a>
+            </div>
+        </div>`;
+        
+        container.innerHTML = html;
+        
+        // Animate bars
+        setTimeout(() => {
+            results.forEach((res, index) => {
+                const bar = document.getElementById(`bar-${index}`);
+                if(bar) bar.style.width = res.percent + '%';
+            });
+        }, 100);
+    }
 </script>
 </article>
         <!-- SECTION: CARA KLAIM (Timeline Style) -->
@@ -2088,7 +2081,7 @@ function submitVote(choice) {
     <i class="ph-bold ph-arrow-up text-xl group-hover:-translate-y-0.5 transition-transform"></i>
 </button>
     <!-- JS LOGIC -->
-<script>
+<script is:inline>
     /* --- 1. CONFIG & UTILS --- */
     let targetRedirectUrl = "";
     const currentCode = "JL3D5DYVW";
