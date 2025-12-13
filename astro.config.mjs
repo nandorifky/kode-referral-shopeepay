@@ -7,6 +7,8 @@ import react from '@astrojs/react';
 import cloudflare from '@astrojs/cloudflare';
 import tailwind from '@astrojs/tailwind';
 
+import markdoc from '@astrojs/markdoc';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://shopeepayreferral.web.id',
@@ -14,11 +16,5 @@ export default defineConfig({
   // HAPUS output: 'hybrid'. Astro 5 otomatis tau dari adapter.
   adapter: cloudflare(),
   
-  integrations: [
-    mdx(), 
-    sitemap(), 
-    keystatic(), 
-    react(),
-    tailwind()
-  ],
+  integrations: [mdx(), sitemap(), keystatic(), react(), tailwind(), markdoc()],
 });

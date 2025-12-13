@@ -5,18 +5,27 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 
+// Mengambil props dari file markdown/mdx
 type Props = CollectionEntry<'blog'>['data'];
+const { title, description, pubDate, updatedDate, heroImage, tags, seo } = Astro.props;
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+// --- LOGIKA SEO PINTAR ---
+// 1. Judul: Pakai Meta Title (jika ada), kalau tidak pakai Judul Artikel
+const metaTitle = (seo?.discriminant && seo.value?.metaTitle) ? seo.value.metaTitle : title;
 
-// --- SCHEMA MARKUP (SEO) ---
-// Ini membantu Google menampilkan artikelmu sebagai Rich Snippet
+// 2. Deskripsi: Pakai Meta Desc (jika ada), kalau tidak pakai Description biasa
+const metaDesc = (seo?.discriminant && seo.value?.metaDescription) ? seo.value.metaDescription : description;
+
+// 3. NoIndex: Cek apakah dicentang
+const noIndex = (seo?.discriminant && seo.value?.noIndex);
+
+// --- SCHEMA MARKUP (JSON-LD) ---
 const schema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": title,
-  "description": description,
-  "image": heroImage ? new URL(heroImage, Astro.site).toString() : undefined,
+  "headline": metaTitle,
+  "description": metaDesc,
+  "image": heroImage?.src ? new URL(heroImage.src, Astro.site).toString() : undefined,
   "datePublished": pubDate.toISOString(),
   "dateModified": updatedDate ? updatedDate.toISOString() : pubDate.toISOString(),
   "author": {
@@ -29,13 +38,14 @@ const schema = {
 
 <html lang="id">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={metaTitle} description={metaDesc} />
+        
+        {noIndex && <meta name="robots" content="noindex, nofollow" />}
+        
         <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+        
 		<style>
-            /* Custom smooth scroll untuk anchor link */
-            html {
-                scroll-behavior: smooth;
-            }
+            html { scroll-behavior: smooth; }
 		</style>
 	</head>
 
@@ -60,7 +70,7 @@ const schema = {
                     <li aria-current="page">
                         <div class="flex items-center">
                             <i class="ph-bold ph-caret-right text-gray-400"></i>
-                            <span class="ml-1 text-gray-900 font-medium truncate max-w-[200px] md:max-w-xs">{title}</span>
+                            <span class="ml-1 text-gray-900 font-medium truncate max-w-[150px] md:max-w-xs">{title}</span>
                         </div>
                     </li>
                 </ol>
@@ -69,19 +79,37 @@ const schema = {
             <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
                 
                 {heroImage && (
-                    <div class="relative w-full aspect-video md:aspect-[21/9] overflow-hidden bg-gray-100">
-                        <img 
-                            width={1020} 
-                            height={510} 
-                            src={heroImage} 
-                            alt={`Cover image untuk ${title}`} 
-                            class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                            loading="eager"
-                        />
+                    <div class="relative w-full">
+                        <div class="aspect-video md:aspect-[21/9] overflow-hidden bg-gray-100">
+                            <img 
+                                src={heroImage.src} 
+                                alt={heroImage.alt || title} 
+                                class="w-full h-full object-cover"
+                                loading="eager"
+                            />
+                        </div>
+                        {/* Caption Gambar */}
+                        {heroImage.caption && (
+                            <div class="bg-gray-50 py-2 px-4 border-b border-gray-100">
+                                <p class="text-center text-xs text-gray-500 italic flex items-center justify-center gap-1">
+                                    <i class="ph-fill ph-camera"></i> {heroImage.caption}
+                                </p>
+                            </div>
+                        )}
                     </div>
                 )}
 
                 <div class="p-6 md:p-10">
+                    {tags && tags.length > 0 && (
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            {tags.map(tag => (
+                                <span class="bg-blue-50 text-blue-600 text-[10px] uppercase font-bold px-2 py-1 rounded-md border border-blue-100">
+                                    #{tag}
+                                </span>
+                            ))}
+                        </div>
+                    )}
+
                     <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-4">
                         <div class="flex items-center gap-1.5">
                             <i class="ph-duotone ph-calendar-blank text-lg text-shopee"></i>
@@ -119,7 +147,7 @@ const schema = {
                         <div>
                             <p class="text-xs text-gray-500 font-bold uppercase tracking-wider mb-0.5">Ditulis Oleh</p>
                             <h3 class="text-lg font-bold text-gray-900">Nando Rifky</h3>
-                            <p class="text-sm text-gray-600 mt-1">SEO Specialist & Tech Enthusiast. Berbagi tips seputar digital payment dan teknologi terkini.</p>
+                            <p class="text-sm text-gray-600 mt-1">SEO Specialist & Tech Enthusiast.</p>
                         </div>
                     </div>
                 </div>
@@ -142,7 +170,6 @@ const schema = {
 		<Footer />
         
         <script>
-            // Script untuk memunculkan Sticky CTA saat scroll ke bawah
             const cta = document.getElementById('sticky-cta');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 300) {
