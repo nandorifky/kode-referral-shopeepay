@@ -1,0 +1,75 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="id">
+	<head>
+		<BaseHead title={`404 - Halaman Tidak Ditemukan | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+        
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+        <style>
+            /* --- TEMA DARK MODE --- */
+            body {
+                background-color: #050505;
+                color: #e0e0e0;
+                font-family: 'Inter', sans-serif;
+                background-image: 
+                    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+                background-size: 40px 40px;
+            }
+            .font-display { font-family: 'Outfit', sans-serif; }
+            .text-gradient {
+                background: linear-gradient(135deg, #EE4D2D 0%, #ff9f43 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        </style>
+	</head>
+	<body class="antialiased selection:bg-[#EE4D2D] selection:text-white flex flex-col min-h-screen">
+		<Header />
+		
+        <main class="flex-1 flex items-center justify-center p-4">
+            <div class="text-center max-w-lg mx-auto relative">
+                
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#EE4D2D]/20 blur-[100px] rounded-full pointer-events-none"></div>
+
+                <h1 class="font-display text-[8rem] md:text-[10rem] font-bold leading-none text-white/5 select-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0">
+                    404
+                </h1>
+
+                <div class="relative z-10 space-y-6">
+                    <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-[#EE4D2D]/10 border border-[#EE4D2D]/20 text-[#EE4D2D] mb-4">
+                        <i class="ph-duotone ph-path text-4xl"></i>
+                    </div>
+                    
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-white">
+                        Halaman <span class="text-gradient">Nyasar?</span>
+                    </h2>
+                    
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        Waduh, halaman yang kamu cari sepertinya sudah pindah atau tidak tersedia.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                        <a href="/" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#EE4D2D] hover:bg-orange-600 text-white font-bold transition-all shadow-lg shadow-[#EE4D2D]/20 no-underline">
+                            <i class="ph-bold ph-house"></i> Kembali ke Home
+                        </a>
+                        <a href="/blog" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium transition-all no-underline">
+                            <i class="ph-bold ph-newspaper"></i> Baca Blog
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+		<Footer />
+	</body>
+</html>
