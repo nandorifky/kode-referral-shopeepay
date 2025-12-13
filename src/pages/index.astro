@@ -1,3 +1,20 @@
+---
+// --- LOGIKA TANGGAL OTOMATIS ---
+const now = new Date();
+
+// 1. Format ISO untuk SEO (Schema & Meta Tag)
+// Contoh output: "2025-12-13T18:30:00.000Z"
+const isoDate = now.toISOString();
+
+// 2. Format Human Readable untuk Tampilan Visual (Last Update)
+// Contoh output: "13 Desember 2025"
+const displayDate = now.toLocaleDateString('id-ID', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+});
+---
+
 <!DOCTYPE html>
 <html lang="id-ID" class="scroll-smooth scroll-pt-32 md:scroll-pt-24">
 <head>
@@ -13,7 +30,7 @@
     <link rel="preload" href="https://unpkg.com/@phosphor-icons/web/src/bold/Phosphor-Bold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://unpkg.com/@phosphor-icons/web/src/fill/Phosphor-Fill.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://unpkg.com/@phosphor-icons/web/src/duotone/Phosphor-Duotone.woff2" as="font" type="font/woff2" crossorigin>
-    <meta property="article:modified_time" content="2025-11-29T11:28:00+07:00" />
+    <meta property="article:modified_time" content={isoDate} />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -184,8 +201,7 @@
     </style>
 
     <!-- Schema Markup -->
-<script type="application/ld+json">
-{
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -197,7 +213,7 @@
       "inLanguage": "id-ID",
       "isPartOf": { "@id": "https://shopeepayreferral.web.id/#website" },
       "datePublished": "2025-11-21T08:00:00+07:00",
-      "dateModified": "2025-11-29T11:28:00+07:00"
+      "dateModified": isoDate
     },
     {
       "@type": "Person",
@@ -403,7 +419,7 @@
       "@type": "HowTo",
       "name": "Cara Memasukkan Kode Referral ShopeePay",
       "description": "Langkah-langkah klaim bonus pengguna baru ShopeePay.",
-      "dateModified": "2025-11-29T11:28:00+07:00",
+      "dateModified": isoDate,
       "image": {
         "@type": "ImageObject",
         "url": "https://shopeepayreferral.web.id/kode-referral-shopeepay-terbaru-2025.webp",
@@ -439,8 +455,7 @@
       ]
     }
   ]
-}
-</script>
+})} />
 </head>
 <body class="antialiased selection:bg-shopee selection:text-white">
 
