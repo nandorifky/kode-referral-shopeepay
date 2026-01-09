@@ -1,18 +1,26 @@
 ---
-// --- LOGIKA TANGGAL OTOMATIS ---
+// --- LOGIKA TANGGAL OTOMATIS (SERVER SIDE) ---
 const now = new Date();
 
-// 1. Format ISO untuk SEO (Schema & Meta Tag)
-// Contoh output: "2025-12-13T18:30:00.000Z"
+// 1. Format ISO (PENTING: Jangan dihapus, ini dipakai Schema SEO di <head>)
 const isoDate = now.toISOString();
 
-// 2. Format Human Readable untuk Tampilan Visual (Last Update)
-// Contoh output: "13 Januari 2026"
+// 2. Format Lengkap (PENTING: Ini kode asli Anda, dipakai untuk "Last Update")
 const displayDate = now.toLocaleDateString('id-ID', {
     day: 'numeric',
     month: 'long',
     year: 'numeric'
 });
+
+// 3. Tambahan Variabel Pecahan (Ini tambahan dari saya untuk Judul & Teks)
+const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+const namaBulan = months[now.getMonth()];
+const tahunSaja = now.getFullYear();
+const bulanTahun = `${namaBulan} ${tahunSaja}`; // Output: "BULAN TAHUN"
+
+// Logika Akhir Bulan (Untuk FOMO: "Promo berakhir tgl...")
+const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+const akhirBulan = `${lastDay} ${namaBulan} ${tahunSaja}`; //
 ---
 
 <!DOCTYPE html>
@@ -20,9 +28,9 @@ const displayDate = now.toLocaleDateString('id-ID', {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kode Referral Shopeepay untuk Pengguna Baru Januari 2026</title>
+    <title>Kode Referral Shopeepay untuk Pengguna Baru {bulanTahun}</title>
     <meta name="description" content="Masih aktif! Gunakan kode referral ShopeePay JL3D5DYVW untuk klaim bonus pengguna baru Rp5.000 + Voucher Cashback. Valid & terverifikasi hari ini.">
-    <meta name="keywords" content="kode referral shopeepay, cara dapat saldo shopeepay gratis, kode referral shopee paylater, bonus pengguna baru shopee 2026, JL3D5DYVW">
+    <meta name="keywords" content={`kode referral shopeepay, cara dapat saldo shopeepay gratis, kode referral shopee paylater, bonus pengguna baru shopeepay ${bulanTahun}, JL3D5DYVW`}>
     <meta name="author" content="Nando Rifky">  
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://shopeepayreferral.web.id/" />
@@ -35,12 +43,12 @@ const displayDate = now.toLocaleDateString('id-ID', {
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://shopeepayreferral.web.id/">
-    <meta property="og:title" content="Kode Referral Shopeepay untuk Pengguna Baru Januari 2026">
+    <meta property="og:title" content={`Kode Referral Shopeepay untuk Pengguna Baru ${bulanTahun}`}>
     <meta property="og:description" content="Gunakan kode JL3D5DYVW untuk klaim paket selamat datang senilai Rp5.000. Klik untuk salin.">
     <meta property="og:image" content="https://shopeepayreferral.web.id/kode-referral-shopeepay-terbaru-2026.webp">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@shopeepay_id"> <meta name="twitter:creator" content="@nandorifky"> <meta name="twitter:title" content="Kode Referral Shopeepay untuk Pengguna Baru Januari 2026">
+    <meta name="twitter:site" content="@shopeepay_id"> <meta name="twitter:creator" content="@nandorifky"> <meta name="twitter:title" content={`Kode Referral Shopeepay untuk Pengguna Baru ${bulanTahun}`} >
     <meta name="twitter:description" content="Bonus 5RB + Voucher. Cek bukti validasi dan cara klaim anti-gagal di sini.">
     <meta name="twitter:image" content="https://shopeepayreferral.web.id/kode-referral-shopeepay-terbaru-2026.webp">
 
@@ -492,7 +500,7 @@ const displayDate = now.toLocaleDateString('id-ID', {
             <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
                 <a href="#kode" class="hover:text-white text-shopee transition-colors">Kode Referral</a>
                 <a href="#event-info" class="relative group hover:text-white transition-colors flex items-center gap-2">
-    <span>Event Januari</span>
+    <span>Event {namaBulan}</span>
     
     <span class="relative flex h-2 w-2">
       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-shopee opacity-75"></span>
@@ -527,7 +535,7 @@ const displayDate = now.toLocaleDateString('id-ID', {
             <div class="flex items-center gap-6 px-4 h-12 text-xs font-medium text-gray-400 min-w-max">
                 <a href="#kode" class="mobile-nav-item text-shopee">Kode Referral</a>
                 <a href="#event-info" class="relative group hover:text-white transition-colors flex items-center gap-2">
-    <span>Event Januari</span>
+    <span>Event {namaBulan}</span>
     
     <span class="relative flex h-2 w-2">
       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-shopee opacity-75"></span>
@@ -671,7 +679,7 @@ const displayDate = now.toLocaleDateString('id-ID', {
         <div class="max-w-4xl mx-auto text-center relative z-10">
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-shopee/10 border border-shopee/20 text-shopee-light text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 shadow-[0_0_20px_rgba(238,77,45,0.3)]">
                 <span class="w-1.5 h-1.5 rounded-full bg-shopee animate-ping"></span>
-                UPDATE <span id="current-month">JANUARI</span> 2026
+                UPDATE {bulanTahun}
             </div>
 
 <h1 class="font-display font-extrabold text-4xl md:text-6xl lg:text-7xl text-white mb-2 leading-tight tracking-tight">
@@ -683,7 +691,7 @@ const displayDate = now.toLocaleDateString('id-ID', {
 </p>
             
             <p class="text-gray-400 text-base md:text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-                Kode referral ShopeePay yang masih aktif hari ini adalah  <span class="text-white font-semibold border-b border-shopee/50">JL3D5DYVW</span>, dan masih berlaku hingga 31 Januari 2026 nanti. Klaim saldo ShopeePay gratis dan benefit lainnya dengan memasukkan kode tersebut dan melengkapi data diri untuk upgrade ke ShopeePay Plus.
+                Kode referral ShopeePay yang masih aktif hari ini adalah  <span class="text-white font-semibold border-b border-shopee/50">JL3D5DYVW</span>, dan masih berlaku hingga {akhirBulan} nanti. Klaim saldo ShopeePay gratis dan benefit lainnya dengan memasukkan kode tersebut dan melengkapi data diri untuk upgrade ke ShopeePay Plus.
             </p>
 
             <!-- HERO CARD: THE CODE -->
@@ -780,7 +788,7 @@ const displayDate = now.toLocaleDateString('id-ID', {
             <div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-shopee to-transparent rounded-full opacity-50"></div>
             <div class="pl-6">
                 <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-6 flex items-center gap-3">
-                    (Update) Event ShopeePay <span class="text-shopee" id="current-month-title">Januari 2026</span>
+                    (Update) Event ShopeePay <span class="text-shopee">{bulanTahun}</span>
                 </h2>
                 
                     <p class="text-gray-300 mb-6 leading-relaxed">
@@ -790,7 +798,7 @@ const displayDate = now.toLocaleDateString('id-ID', {
                 <div class="mt-8 mb-12">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-lg font-bold text-white border-l-4 border-shopee pl-3">
-                             Detail Informasi Event 1-31 Januari 2026 <span class="text-shopee">*</span>
+                             Detail Informasi Event 1-{akhirBulan} <span class="text-shopee">*</span>
                         </h3>
                         <button onclick="toggleModal('modal-snk-event')" class="group flex items-center gap-1.5 text-[10px] font-medium text-gray-300 bg-white/5 hover:bg-shopee/10 border border-white/10 hover:border-shopee/50 px-3 py-1.5 rounded-full transition-all outline-none focus:ring-2 ring-shopee/50" style="white-space: nowrap;">
                             <i class="ph-fill ph-file-text text-gray-400 group-hover:text-shopee transition-colors"></i> 
@@ -807,7 +815,7 @@ const displayDate = now.toLocaleDateString('id-ID', {
                             <img 
                                 src="https://shopeepayreferral.web.id/img/event-undang-teman-shopeepay-januari-2026.webp" 
                                 alt="Undang Teman Total Hadiah Jutaan Rupiah"
-                                data-caption="Event Spesial: Total Hadiah S/D Jutaan Rupiah Khusus Januari" 
+                                data-caption={`Event Spesial: Total Hadiah S/D Jutaan Rupiah Khusus ${bulanTahun}`} 
                                 class="w-full h-auto object-cover img-zoom"
                                 loading="lazy"
                             >
@@ -964,7 +972,7 @@ const displayDate = now.toLocaleDateString('id-ID', {
 </p>
 
 <p class="text-gray-300 mb-6 leading-relaxed">
-    Saat seseorang baru mendaftar menggunakan kode tersebut, kedua pihak (pengirim dan penerima) akan mendapatkan bonus, seperti saldo gratis atau voucher. Program ini telah berjalan sejak peluncuran ShopeePay dan terus diupdate, misalnya pada event bulanan seperti Januari 2026 dengan bonus hingga Rp1 juta untuk top referrer.
+    Saat seseorang baru mendaftar menggunakan kode tersebut, kedua pihak (pengirim dan penerima) akan mendapatkan bonus, seperti saldo gratis atau voucher. Program ini telah berjalan sejak peluncuran ShopeePay dan terus diupdate, misalnya pada event bulanan {bulanTahun} dengan bonus jutaan rupiah untuk top referrer.
 </p>
         
 <div class="glass p-6 rounded-xl mb-8">
@@ -987,7 +995,7 @@ const displayDate = now.toLocaleDateString('id-ID', {
         </code>
     </a>
 
-    <p class="text-xs text-gray-400 mt-4">Kode ini valid per Januari 2026 dan bisa diklaim oleh pengguna baru untuk bonus Rp5.000.</p>
+    <p class="text-xs text-gray-400 mt-4">Kode ini valid per {bulanTahun} dan bisa diklaim oleh pengguna baru untuk bonus Rp5.000.</p>
 </div>
 
         <!-- Sub-Section 2: Fungsi Kode Referral ShopeePay -->
@@ -1047,7 +1055,7 @@ const displayDate = now.toLocaleDateString('id-ID', {
     </table>
 </div>
         
-        <p class="text-gray-400 text-sm mt-6 italic">Update: Hingga 31 Januari 2026, program referral ShopeePay masih aktif dengan syarat verifikasi KTP untuk klaim bonus. Pastikan gunakan kode valid untuk menghindari kegagalan.</p>
+        <p class="text-gray-400 text-sm mt-6 italic">Update: Hingga {akhirBulan}, program referral ShopeePay masih aktif dengan syarat verifikasi KTP untuk klaim bonus. Pastikan gunakan kode valid untuk menghindari kegagalan.</p>
     </div>
 </article>
 
@@ -1434,7 +1442,21 @@ const displayDate = now.toLocaleDateString('id-ID', {
                 </div>
             </div>
         </article>
-
+        <article class="mb-12 relative overflow-hidden rounded-2xl border border-shopee/30 bg-gradient-to-r from-[#1a0f0f] to-black p-6 group cursor-pointer hover:border-shopee/60 transition-colors">
+            <div class="absolute -right-10 -top-10 w-32 h-32 bg-shopee/20 blur-3xl rounded-full pointer-events-none"></div>
+            <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex-1 text-center md:text-left">
+                    <span class="inline-block bg-shopee/20 text-shopee text-[10px] font-bold px-2 py-1 rounded mb-2 border border-shopee/20 animate-pulse">BONUS TAMBAHAN</span>
+                    <h3 class="text-white font-bold text-lg mb-1">Kode Referral SPayLater</h3>
+                    <p class="text-sm text-gray-400">Suka belanja pakai PayLater? Daftar Shopee PayLater sekarang juga dengan menggunakan kode referral.</p>
+                </div>
+                <div class="shrink-0 flex flex-col gap-2 w-full md:w-auto">
+                     <a href="/kode-referral-shopee-paylater" class="bg-white/10 hover:bg-white/20 border border-white/10 text-white font-bold py-3 px-6 rounded-xl flex items-center justify-center gap-2 no-underline transition-all group-hover:scale-105">
+                        <i class="ph-bold ph-gift"></i> SPL2120960001886617649
+                     </a>
+                </div>
+            </div>
+        </article>
         <!-- NEW SECTION: CARA DAFTAR PENGGUNA BARU -->
         <article id="cara-daftar" class="mb-24 glass-strong rounded-2xl p-6 md:p-8 border border-white/5 relative overflow-hidden">
             <!-- Background Glow -->
@@ -1750,6 +1772,116 @@ const displayDate = now.toLocaleDateString('id-ID', {
         </div>
     </div>
 </article>
+
+<section id="news-feed" class="mb-24 pt-8 border-t border-white/5">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <span class="text-shopee font-bold text-xs tracking-widest uppercase mb-1 block animate-pulse">Live Update</span>
+                    <h2 class="font-display text-2xl font-bold text-white">Berita ShopeePay</h2>
+                </div>
+                <div class="hidden md:block">
+                    <span class="text-[10px] text-gray-500 bg-white/5 px-3 py-1 rounded-full border border-white/5">Sumber: Google News</span>
+                </div>
+            </div>
+
+            <div id="news-container" class="grid gap-4">
+                <div class="animate-pulse bg-white/5 p-4 rounded-xl border border-white/5 h-24"></div>
+                <div class="animate-pulse bg-white/5 p-4 rounded-xl border border-white/5 h-24"></div>
+                <div class="animate-pulse bg-white/5 p-4 rounded-xl border border-white/5 h-24"></div>
+            </div>
+
+            <div class="mt-6 text-center">
+                <a href="https://news.google.com/search?q=ShopeePay&hl=id-ID&gl=ID&ceid=ID:id" target="_blank" rel="nofollow noopener" class="text-xs text-gray-500 hover:text-shopee transition-colors flex items-center justify-center gap-2">
+                    Lihat Berita Lainnya di Google News <i class="ph-bold ph-arrow-up-right"></i>
+                </a>
+            </div>
+        </section>
+
+ <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('news-container');
+        
+        // KRITIKAL: Ganti AllOrigins dengan RSS2JSON
+        // Ini mengubah response langsung jadi JSON (lebih cepat diparse) dan servernya lebih ngebut
+        const rssUrl = 'https://news.google.com/rss/search?q=ShopeePay+when:30d&hl=id-ID&gl=ID&ceid=ID:id';
+        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+        fetch(apiUrl)
+            .then(response => {
+                if (response.ok) return response.json();
+                throw new Error('Network response was not ok.');
+            })
+            .then(data => {
+                // RSS2JSON mengembalikan items dalam array 'items', bukan XML structure
+                const items = data.items;
+                
+                let html = '';
+                // Ambil maksimal 10 berita
+                const maxItems = items ? Math.min(items.length, 10) : 0;
+
+                if (maxItems === 0) {
+                    container.innerHTML = '<div class="text-center text-gray-500 text-sm py-4">Belum ada berita terbaru minggu ini.</div>';
+                    return;
+                }
+
+                for (let i = 0; i < maxItems; i++) {
+                    const item = items[i];
+                    
+                    // Logic pemisah Judul - Source
+                    let source = "Media Nasional";
+                    let title = item.title;
+                    
+                    // Google RSS via JSON kadang formatnya sedikit beda, kita handle aman
+                    if(title.includes(" - ")) {
+                        const parts = title.split(" - ");
+                        // Cek kalau bagian terakhir pendek (kemungkinan nama media)
+                        if (parts[parts.length - 1].length < 20) {
+                            source = parts.pop();
+                        }
+                        title = parts.join(" - ");
+                    }
+
+                    // Format Tanggal (RSS2JSON mengembalikan format "YYYY-MM-DD HH:mm:ss")
+                    // Kita perlu ubah string ini ke Date object yang valid untuk Safari/Mobile
+                    const dateStrRaw = item.pubDate.replace(/-/g, '/'); // Fix untuk kompatibilitas browser lama
+                    const dateObj = new Date(dateStrRaw);
+                    const dateStr = dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+
+                    html += `
+                        <a href="${item.link}" target="_blank" rel="nofollow noopener" class="group block bg-white/5 hover:bg-white/10 border border-white/5 hover:border-shopee/30 p-5 rounded-xl transition-all duration-300 relative overflow-hidden">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="text-[10px] font-bold text-shopee bg-shopee/10 px-2 py-0.5 rounded border border-shopee/10">${source}</span>
+                                        <span class="text-[10px] text-gray-500 flex items-center gap-1"><i class="ph-fill ph-clock"></i> ${dateStr}</span>
+                                    </div>
+                                    <h3 class="text-white font-medium text-sm md:text-base leading-snug group-hover:text-shopee transition-colors line-clamp-2">
+                                        ${title}
+                                    </h3>
+                                </div>
+                                <div class="shrink-0 mt-2 md:mt-0">
+                                    <span class="text-xs text-gray-500 group-hover:text-white flex items-center gap-1 bg-black/20 px-3 py-1.5 rounded-lg border border-white/5">
+                                        Baca <i class="ph-bold ph-caret-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    `;
+                }
+                container.innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error fetching news:', error);
+                // Fallback UI yang lebih bersih
+                container.innerHTML = `
+                    <div class="text-center bg-red-500/10 border border-red-500/20 rounded-xl p-4">
+                        <p class="text-red-400 text-sm">Gagal memuat berita saat ini.</p>
+                        <button onclick="location.reload()" class="mt-2 text-xs text-white bg-white/10 px-3 py-1 rounded hover:bg-white/20 transition">Coba Refresh</button>
+                    </div>
+                `;
+            });
+    });
+</script>
     </main>
 
     <!-- FOOTER -->
@@ -1798,7 +1930,7 @@ const displayDate = now.toLocaleDateString('id-ID', {
                     
                     <div class="bg-white/5 rounded-lg p-4 border-l-2 border-shopee">
                         <p class="text-xs text-gray-400 mb-1">Status Dokumen</p>
-                        <p class="font-medium text-white">Terakhir Diperbarui: <span class="text-shopee">Januari 2026</span></p>
+                        <p class="font-medium text-white">Terakhir Diperbarui: <span class="text-shopee">{bulanTahun}</span></p>
                     </div>
 
                     <p>
