@@ -33,6 +33,8 @@ const blog = defineCollection({
 				noIndex: z.boolean().optional(),
 			}).optional(),
 		}).optional(),
+
+		extraSchema: z.string().optional(),
 	}),
 });
 

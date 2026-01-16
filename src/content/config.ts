@@ -7,6 +7,7 @@ const blog = defineCollection({
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
 		heroImage: z.string().optional(), // <--- HARUS z.string(), JANGAN image()
+		extraSchema: z.string().optional(), 
 	}),
 });
 

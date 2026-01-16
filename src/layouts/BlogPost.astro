@@ -7,7 +7,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 
 // Mengambil props dari file markdown/mdx
 type Props = CollectionEntry<'blog'>['data'];
-const { title, description, pubDate, updatedDate, heroImage, tags, seo } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, tags, seo, extraSchema } = Astro.props;
 
 // --- LOGIKA SEO ---
 const metaTitle = (seo?.discriminant && seo.value?.metaTitle) ? seo.value.metaTitle : title;
@@ -35,6 +35,7 @@ const schema = {
 		<BaseHead title={metaTitle} description={metaDesc} />
         {noIndex && <meta name="robots" content="noindex, nofollow" />}
         <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+        {extraSchema && <script type="application/ld+json" set:html={extraSchema} />}
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
         <script src="https://unpkg.com/@phosphor-icons/web"></script>
 

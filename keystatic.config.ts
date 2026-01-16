@@ -83,6 +83,13 @@ export default config({
           }
         ),
 
+        // 4. EXTRA SCHEMA (JSON-LD Input)
+        extraSchema: fields.text({
+            label: 'Extra JSON-LD Schema (Advanced)',
+            description: 'Paste kode JSON-LD mentah di sini (tanpa tag <script>). Cocok untuk FAQ, Review, atau Product Schema.',
+            multiline: true, // Agar kotak inputnya besar
+        }),
+
         // Menggunakan MDX (agar outputnya .mdx, bukan .mdoc)
         content: fields.mdx({
           label: 'Konten Artikel',
