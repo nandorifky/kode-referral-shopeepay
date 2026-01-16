@@ -1,62 +1,56 @@
-# Astro Starter Kit: Blog
+# Kode Referral ShopeePay Lander (High-Performance SEO Engine)
 
-```sh
-npm create astro@latest -- --template blog
-```
+**Live Site:** [shopeepayreferral.web.id](https://shopeepayreferral.web.id) | **Kode:** `JL3D5DYVW`
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Tentang Project Ini
 
-Features:
+Repository ini adalah source code untuk landing page Kode Referral ShopeePay, yang dirancang khusus untuk mendominasi SERP (*Search Engine Results Page*). Project ini bukan sekadar website statis biasa, melainkan sebuah **SEO Engine** yang dibangun di atas **Astro 5** untuk mencapai skor Core Web Vitals sempurna (100/100).
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+Fokus utama teknis project ini adalah memenangkan kata kunci kompetitif seperti *"Kode Referral ShopeePay Terbaru"*, *"Bonus Pengguna Baru"*, dan *"Cara Klaim ShopeePay"* melalui arsitektur kode yang bersih dan terstruktur.
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## ⚡ Mengapa Website Ini Cepat & Ranking?
 
-```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
-```
+Project ini menerapkan teknik Technical SEO tingkat lanjut yang jarang digunakan website kompetitor:
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### 1. Zero-Javascript By Default (Island Architecture)
+Menggunakan **Astro 5**, website ini mengirimkan **0kB JavaScript** ke client secara default. Interaksi (seperti timer mundur atau modal) hanya di-load saat diperlukan (*hydration*), membuat *First Contentful Paint (FCP)* di bawah **0.8 detik**.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### 2. Dynamic Schema Injection (JSON-LD)
+Mesin pencari membutuhkan struktur data. Project ini memiliki fitur Custom Schema Injection via **Keystatic CMS**, memungkinkan penyisipan schema spesifik per artikel:
+* `Product Schema` (Untuk review fitur ShopeePay)
+* `FAQPage Schema` (Untuk menjawab pertanyaan user langsung di Google)
+* `BlogPosting Schema` (Standar artikel)
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+### 3. Server-Side FOMO Logic
+Untuk meningkatkan konversi kode referral `JL3D5DYVW`, website menggunakan logika tanggal dinamis di sisi server:
+* **Auto-Update Titles:** Judul halaman otomatis berubah mengikuti bulan berjalan (misal: "Promo Januari 2026").
+* **Dynamic Metadata:** Deskripsi meta tag selalu relevan tanpa edit manual.
 
-Any static assets, like images, can be placed in the `public/` directory.
+---
 
-## 🧞 Commands
+## 🛠 Tech Stack
 
-All commands are run from the root of the project, from a terminal:
+| Komponen | Teknologi | Alasan Penggunaan |
+| :--- | :--- | :--- |
+| **Core** | Astro 5.0 | Performa statis tak tertandingi & Content Collections API. |
+| **Styling** | Tailwind CSS | Utility-first, purgeCSS otomatis untuk ukuran file kecil. |
+| **CMS** | Keystatic | Git-based CMS. Tidak butuh database eksternal, konten menyatu dengan repo. |
+| **Hosting** | Cloudflare Pages | Edge network global, TTFB (*Time to First Byte*) sangat rendah. |
+| **Iconography** | Phosphor Icons | Konsistensi visual UI. |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+---
 
-## 👀 Want to learn more?
+## 📂 Struktur SEO Content
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Project ini menggunakan validasi konten yang ketat dengan **Zod Schema** (`src/content.config.ts`) untuk memastikan setiap artikel memenuhi standar SEO sebelum build:
 
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+```typescript
+// Contoh Validasi SEO di Project Ini
+seo: z.object({
+    metaTitle: z.string().max(60).optional(), // Mencegah judul terpotong di Google
+    metaDescription: z.string().max(160).optional(), // Mencegah deskripsi terpotong
+    noIndex: z.boolean().optional(), // Kontrol indexing halaman
+    extraSchema: z.string().optional() // Slot untuk raw JSON-LD
+})
