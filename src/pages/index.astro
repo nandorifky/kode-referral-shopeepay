@@ -18,7 +18,7 @@ const namaBulan = months[now.getMonth()];
 const tahunSaja = now.getFullYear();
 const bulanTahun = `${namaBulan} ${tahunSaja}`; // Output: "BULAN TAHUN"
 
-// Logika Akhir Bulan (Untuk FOMO: "Promo berakhir tgl...")
+// Logika Akhir Bulan
 const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
 const akhirBulan = `${lastDay} ${namaBulan} ${tahunSaja}`; //
 ---
