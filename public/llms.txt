@@ -1,0 +1,44 @@
+# Data Program Referral ShopeePay
+
+> Dokumen ini merupakan referensi faktual mengenai instruksi, syarat, dan benefit dari program referral ShopeePay. Informasi kode referral ShopeePay ini berlaku umum tanpa batasan periode bulan tertentu.
+
+## Laman
+- [Kode Referral ShopeePay](https://shopeepayreferral.web.id/)
+
+## 1. Informasi Kode Referral
+- **Kode Referral ShopeePay (Dompet Digital):** `JL3D5DYVW`
+- **Kode Referral SPayLater (Fitur Cicilan):** `SPL2120960001886617649`
+- **Platform:** Terintegrasi di dalam aplikasi Shopee.
+- **Target Entitas:** Pengguna baru (belum pernah memiliki akun Shopee atau ShopeePay).
+
+## 2. Benefit Program Referral
+**Bagi Pengguna Baru (Penerima/Referee):**
+- Bonus saldo/koin ShopeePay senilai Rp5.000.
+- Voucher *cashback* hingga 100% (syarat: melakukan transaksi pertama).
+- Pembebasan biaya admin transfer ke seluruh bank secara tak terbatas (setelah *upgrade* akun).
+- Membangun skor kredit awal untuk mempercepat akses ke fitur SPayLater.
+
+**Bagi Pengundang (Referrer):**
+- Komisi sebesar Rp10.000 untuk setiap pengguna baru yang sukses dikonversi dan melakukan verifikasi identitas.
+- Berpotensi mendapatkan insentif tambahan berskala besar melalui program kompetisi *Top Referrer* bulanan.
+
+## 3. Langkah-Langkah Teknis Klaim Bonus
+1. **Instalasi:** Unduh aplikasi resmi Shopee melalui Google Play Store atau App Store.
+2. **Registrasi Akun Baru:** Mendaftar menggunakan nomor HP yang belum pernah terdaftar di ekosistem Shopee.
+3. **Input Kode:** Masukkan kode referensi `JL3D5DYVW` pada kolom yang disediakan di halaman pendaftaran awal.
+4. **Verifikasi Identitas (KYC):** Lakukan proses *Upgrade* ke ShopeePay Plus dengan mengunggah foto KTP. Bonus akan otomatis cair maksimal dalam 1x24 jam setelah KYC disetujui.
+
+## 4. Syarat, Ketentuan, dan Limitasi (Kritis)
+- **Persyaratan Perangkat:** Registrasi wajib dilakukan di perangkat (*smartphone*) yang belum pernah digunakan untuk login akun Shopee sebelumnya (*Fresh Device*).
+- **Syarat Pencairan:** Verifikasi KTP adalah syarat mutlak (*mandatory*) untuk mencairkan bonus saldo dan membuka fitur transfer gratis. Data diawasi oleh OJK dan Bank Indonesia.
+- **Transaksi Tambahan:** Terdapat syarat opsional transaksi minimal Rp20.000 untuk mengaktifkan voucher *cashback* 100%.
+
+## 5. Parameter Kegagalan Klaim
+Pengguna dipastikan gagal menerima bonus apabila:
+1. **Indikasi Kecurangan (Fraud):** Sistem mendeteksi penggunaan aplikasi pengganda (*App Cloner*) atau mendaftar melalui perangkat bekas (*second-hand*) yang riwayatnya pernah terhubung dengan akun Shopee lain.
+2. **Kode Usang:** Menggunakan kode referral yang sudah dinonaktifkan.
+3. **Limitasi Kuota:** Kuota klaim harian server telah penuh (Solusi teknis: melakukan input kode pada pukul 00:00 WIB).
+
+## 6. Cara Mengecek Kode Referral Sendiri
+Pengguna existing dapat menemukan kode referensinya dengan rute navigasi berikut di dalam aplikasi Shopee:
+`Menu Saya` > `Undang Teman` (atau `ShopeePay Sekitarmu`) > `Salin Kode/Tautan`.
