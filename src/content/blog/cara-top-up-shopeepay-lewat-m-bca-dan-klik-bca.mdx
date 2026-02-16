@@ -1,0 +1,137 @@
+---
+title: Panduan Cara Top Up ShopeePay Lewat m-BCA & KlikBCA
+tags: []
+description: >-
+  Panduan cara top up ShopeePay lewat m-BCA dan KlikBCA. Informasi lengkap kode
+  virtual account 122, rincian biaya admin gratis, dan limit transaksi harian.
+pubDate: 2026-02-16
+heroImage:
+  src: >-
+    /blog-images/cara-top-up-shopeepay-lewat-m-bca-dan-klik-bca/heroImage/src.jpg
+  alt: Cara Top Up ShopeePay Lewat m-BCA & KlikBCA
+seo:
+  discriminant: false
+---
+Integrasi sistem pembayaran digital antara **Bank Central Asia (BCA)** dan layanan uang elektronik **ShopeePay** (PT AirPay International Indonesia) memungkinkan nasabah untuk melakukan pengisian saldo (*top up*) secara *real-time*.
+
+Mekanisme transfer dana ini memanfaatkan infrastruktur **BCA Virtual Account**, sebuah metode identifikasi pembayaran otomatis yang menghubungkan rekening bank pengirim langsung ke akun dompet digital penerima.
+
+Bagi nasabah BCA, terdapat dua kanal elektronik utama yang dapat digunakan untuk transaksi ini, yaitu aplikasi perbankan seluler (**BCA Mobile / m-BCA**) dan layanan perbankan internet (**KlikBCA**). Kedua metode ini menawarkan fleksibilitas tinggi karena dapat diakses tanpa harus mengunjungi mesin ATM fisik.
+
+Artikel ini mendokumentasikan prosedur teknis, struktur biaya administrasi, serta batasan limit transaksi yang berlaku dalam ekosistem pembayaran ShopeePay via BCA.
+
+## Kode Identifikasi Virtual Account (VA)
+
+Dalam arsitektur pembayaran BCA, ShopeePay memiliki kode perusahaan unik yang menjadi prefiks (awalan) nomor tujuan transfer. Kode perusahaan untuk ShopeePay di sistem BCA adalah **122**.
+
+Format nomor Virtual Account yang valid terdiri dari kode perusahaan diikuti oleh nomor telepon seluler pengguna yang terdaftar di aplikasi Shopee.
+
+**Rumus Nomor VA:** `122` + `[Nomor Handphone Pengguna]`
+
+Sebagai ilustrasi, jika seorang pengguna memiliki nomor handphone `0812-3456-7890`, maka nomor Virtual Account yang harus dimasukkan pada menu m-BCA atau KlikBCA adalah **122081234567890**. Kesalahan dalam memasukkan kode prefiks atau nomor handphone akan menyebabkan kegagalan verifikasi nomor tujuan oleh sistem bank.
+
+## Struktur Biaya Administrasi dan Nominal Transaksi
+
+Kebijakan biaya administrasi untuk [*top up* ShopeePay](https://shopeepayreferral.web.id/blog/cara-top-up-shopeepay/) melalui BCA bersifat dinamis dan bergantung pada nominal transaksi yang dilakukan. Berbeda dengan beberapa bank lain yang menerapkan biaya rata (*flat fee*), BCA menerapkan skema insentif untuk nominal tertentu.
+
+Berikut adalah rincian ketentuan nominal dan biaya yang berlaku:
+
+### 1. Batas Minimal Pengisian
+
+Sistem BCA menetapkan batas minimal transaksi (floor limit) sebesar **Rp10.000** per transaksi. Permintaan transfer di bawah nominal tersebut akan ditolak secara otomatis oleh sistem dengan pesan kesalahan "Nominal transaksi tidak valid".
+
+### 2. Skema Biaya Admin
+
+Terdapat perbedaan pengenaan biaya layanan berdasarkan jumlah saldo yang diisi:
+
+* **Transaksi \< Rp50.000:** Dikenakan biaya admin sebesar **Rp1.000**.
+* **Transaksi ≥ Rp50.000:** Bebas biaya admin (**Gratis**).
+
+Biaya admin ini (jika ada) akan dipotong langsung dari saldo rekening BCA nasabah di luar nominal top up. Artinya, jika nasabah mengisi Rp20.000, saldo rekening akan terpotong Rp21.000, dan saldo yang masuk ke ShopeePay tetap utuh Rp20.000.
+
+| Nominal Top Up | Biaya Admin       | Total Potongan Rekening | Saldo Masuk |
+| -------------- | ----------------- | ----------------------- | ----------- |
+| Rp 20.000      | Rp 1.000          | Rp 21.000               | Rp 20.000   |
+| Rp 40.000      | Rp 1.000          | Rp 41.000               | Rp 40.000   |
+| Rp 50.000      | **Rp 0 (Gratis)** | Rp 50.000               | Rp 50.000   |
+| Rp 100.000     | **Rp 0 (Gratis)** | Rp 100.000              | Rp 100.000  |
+
+## Cara Top Up ShopeePay via m-BCA (BCA Mobile)
+
+**BCA Mobile** adalah aplikasi perbankan pada telepon pintar yang menggunakan koneksi internet data. Metode ini merupakan yang paling populer karena kemudahannya dalam otorisasi transaksi menggunakan kode akses dan PIN.
+
+Berikut adalah urutan prosedur standar operasional untuk pengisian saldo via m-BCA:
+
+1. **Akses Aplikasi:** Buka aplikasi BCA Mobile pada perangkat Android atau iOS. Pilih menu **m-BCA** dan masukkan 6 digit Kode Akses (alphanumeric) untuk melakukan *login*.
+2. **Menu Transfer:** Pada halaman menu utama, pilih ikon **m-Transfer**. Menu ini memuat berbagai opsi pemindahan dana.
+3. **Pilih Virtual Account:** Pilih opsi **BCA Virtual Account**. Hindari memilih menu "Antar Rekening" karena format nomor tujuan berbeda.
+4. **Input Nomor Tujuan:**
+   * Ketuk kolom "Input No. Virtual Account".
+   * Masukkan kode **122** diikuti nomor HP (Contoh: `122081234567890`).
+   * Ketuk tombol "Send" di sudut kanan atas.
+   * Lampu indikator di sebelah kanan harus berwarna hijau, menandakan koneksi stabil.
+5. **Konfirmasi Awal:** Layar akan menampilkan *pop-up* informasi berisi inisial nama akun ShopeePay (misal: SHOPEEPAY SH\*\*\*\*\*) dan biaya admin (jika ada). Pastikan nama sudah sesuai, lalu klik **OK**.
+6. **Input Nominal:** Masukkan jumlah uang yang ingin diisikan (Minimal Rp10.000). Klik **OK**.
+7. **Validasi Akhir:** Periksa kembali ringkasan transaksi yang meliputi nomor tujuan, nama penerima, nominal, dan total biaya.
+8. **Otorisasi PIN:** Masukkan 6 digit **PIN m-BCA** Anda untuk mengesahkan transaksi.
+9. **Notifikasi:** Jika berhasil, akan muncul pesan "M-TRANSFER BERHASIL" beserta nomor referensi transaksi. Saldo ShopeePay akan bertambah dalam hitungan detik (*real-time*).
+
+## Cara Top Up ShopeePay via KlikBCA (Internet Banking)
+
+**KlikBCA** adalah layanan perbankan elektronik berbasis web yang umumnya diakses melalui peramban (*browser*) komputer atau laptop.
+
+Metode ini memerlukan perangkat otentikasi tambahan berupa **KeyBCA** (token fisik) untuk menghasilkan kode respon transaksi. Metode ini sering digunakan oleh nasabah yang sedang bekerja di depan komputer atau melakukan transaksi dengan nominal besar.
+
+Langkah-langkah teknis pengisian saldo melalui KlikBCA Individual adalah sebagai berikut:
+
+1. **Login Situs:** Akses laman resmi KlikBCA di alamat `https://ibank.klikbca.com/`. Masukkan *User ID* dan *PIN Internet Banking* pada kolom yang tersedia, lalu klik Login.
+2. **Menu Transfer Dana:** Pada bilah menu di sebelah kiri, pilih menu **Transfer Dana**.
+3. **Pilih Virtual Account:** Klik sub-menu **Transfer ke BCA Virtual Account**.
+4. **Input Nomor VA:**
+   * Pada kolom "No. Virtual Account", masukkan kode **122** + Nomor HP terdaftar.
+   * Alternatifnya, jika nomor sudah pernah disimpan, Anda bisa memilih dari "Daftar Transfer".
+5. **Input Nominal:** Masukkan jumlah saldo yang diinginkan pada kolom nominal. Klik tombol **Lanjutkan**.
+6. **Validasi KeyBCA:**
+   * Sistem akan menampilkan detail transaksi.
+   * Aktifkan token KeyBCA Anda dengan menekan tombol merah.
+   * Masukkan PIN KeyBCA.
+   * Tekan angka **1** (Appli 1) pada token.
+   * Masukkan kode 8 angka yang muncul di layar token ke kolom "Respon KeyBCA Appli 1" di layar komputer.
+7. **Eksekusi:** Klik tombol **Kirim**.
+8. **Bukti Transaksi:** Halaman akan menampilkan bukti transaksi yang dapat dicetak atau disimpan sebagai arsip digital (PDF).
+
+## Penyelesaian Masalah (Troubleshooting)
+
+Meskipun sistem perbankan BCA dan ShopeePay memiliki tingkat reliabilitas tinggi (SLA di atas 99%), kendala teknis dapat terjadi sewaktu-waktu. Berikut adalah klasifikasi masalah umum dan prosedur penyelesaiannya:
+
+### 1. Status Pending (Menunggu)
+
+Terkadang saldo rekening BCA sudah terpotong, namun saldo ShopeePay belum bertambah. Hal ini biasanya disebabkan oleh *time-out* pada jaringan *switching*.
+
+* **Tindakan:** Jangan melakukan transfer ulang. Tunggu dalam kurun waktu 1x24 jam. Sistem akan melakukan rekonsiliasi otomatis. Jika gagal, dana akan dikembalikan ke rekening (*auto-reversal*).
+
+### 2. Akun Penerima Mencapai Limit (Over Limit)
+
+Setiap akun uang elektronik memiliki batas maksimal saldo yang dapat ditampung (Limit Saldo Mengendap) dan batas maksimal uang masuk per bulan (Limit Akumulasi).
+
+* **Akun Unverified:** Maksimal saldo Rp2.000.000.
+* **Akun Verified (Plus):** Maksimal saldo Rp20.000.000.
+* **Limit Akumulasi Bulanan:** Rp20.000.000 (untuk akun biasa) hingga Rp40.000.000 (untuk akun Plus).
+
+Jika top up menyebabkan saldo melebihi batas ini, transaksi akan ditolak oleh sistem BCA. Pengguna disarankan untuk [upgrade ke ShopeePay Plus](https://shopeepayreferral.web.id/blog/cara-upgrade-shopeepay-plus/) dengan melakukan verifikasi identitas (KYC) atau memperbarui status akun.
+
+### 3. Salah Memasukkan Nomor
+
+Kesalahan input nomor handphone pada menu Virtual Account yang mengakibatkan dana masuk ke akun orang lain tidak dapat dibatalkan oleh pihak bank.
+
+Tanggung jawab sepenuhnya berada di tangan nasabah selaku inisiator transaksi. Oleh karena itu, verifikasi nama akun pada tahap konfirmasi sebelum memasukkan PIN adalah langkah krusial.
+
+## Keamanan dan Otorisasi
+
+Dalam setiap transaksi finansial, BCA menerapkan sistem keamanan berlapis (*multi-factor authentication*).
+
+Pada m-BCA, keamanan bergantung pada **Kode Akses** untuk masuk aplikasi dan **PIN** untuk otorisasi transaksi. Pada KlikBCA, keamanan diperkuat dengan penggunaan **Token Fisik (KeyBCA)** yang menghasilkan kode dinamis (*One Time Password*).
+
+Pengguna diimbau untuk tidak pernah membagikan PIN, Kode OTP, atau data kredensial perbankan kepada pihak manapun, termasuk pihak yang mengatasnamakan BCA atau Shopee, guna mencegah tindak kejahatan siber seperti *phishing* atau *social engineering*.
+
+Demikian panduan teknis mengenai prosedur *top up* ShopeePay melalui kanal elektronik BCA. Pemahaman mengenai kode akses, biaya admin, dan limitasi transaksi akan membantu nasabah melakukan aktivitas keuangan digital secara efisien dan aman.
