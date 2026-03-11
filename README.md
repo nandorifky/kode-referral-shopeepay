@@ -12,7 +12,7 @@ Fokus utama teknis project ini adalah memenangkan kata kunci kompetitif seperti 
 
 ## ⚡ Mengapa Website Ini Cepat & Ranking?
 
-Project ini menerapkan teknik Technical SEO tingkat lanjut yang jarang digunakan website kompetitor:
+Project ini menerapkan teknik advanced Technical SEO yang jarang digunakan website kompetitor:
 
 ### 1. Zero-Javascript By Default (Island Architecture)
 Menggunakan **Astro 5**, website ini mengirimkan **0kB JavaScript** ke client secara default. Interaksi (seperti timer mundur atau modal) hanya di-load saat diperlukan (*hydration*), membuat *First Contentful Paint (FCP)* di bawah **0.8 detik**.
