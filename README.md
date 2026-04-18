@@ -4,7 +4,7 @@
 
 ## 🚀 Tentang Project Ini
 
-Repository ini adalah source code untuk landing page Kode Referral ShopeePay, yang dirancang khusus untuk mendominasi SERP (*Search Engine Results Page*). Project ini bukan sekadar website statis biasa, melainkan sebuah **SEO Engine** yang dibangun di atas **Astro 5** untuk mencapai skor Core Web Vitals sempurna (100/100).
+Repository ini adalah source code untuk landing page Kode Referral ShopeePay, yang dirancang khusus untuk mendominasi SERP (*Search Engine Results Page*). Project ini bukan sekadar website statis biasa, melainkan sebuah SEO Engine yang dibangun di atas **Astro 5** untuk mencapai skor Core Web Vitals sempurna (100/100).
 
 Fokus utama teknis project ini adalah memenangkan kata kunci kompetitif seperti *"Kode Referral ShopeePay Terbaru"*, *"Bonus Pengguna Baru"*, dan *"Cara Klaim ShopeePay"* melalui arsitektur kode yang bersih dan terstruktur.
 
