@@ -98,10 +98,14 @@ const spaylaterLink = "https://id.shp.ee/33lfyx0";
         body {
             background-color: #050505;
             color: #e0e0e0;
+            overflow-x: hidden;
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
             background-size: 40px 40px;
+        }
+        html {
+            overflow-x: hidden;
         }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0a0a0a; }
@@ -822,7 +826,7 @@ const spaylaterLink = "https://id.shp.ee/33lfyx0";
         </div>
     </footer>
 
-    <div id="mobile-cta" class="fixed bottom-0 left-0 w-full p-4 bg-[#141414]/95 border-t border-gray-700 z-50 backdrop-blur transform translate-y-full transition-transform duration-300 md:hidden">
+    <div id="mobile-cta" class="fixed bottom-0 inset-x-0 p-4 bg-[#141414]/95 border-t border-gray-700 z-50 backdrop-blur transform translate-y-full transition-transform duration-300 md:hidden">
         <div class="flex gap-3 items-center">
             <div class="flex-1">
                 <p class="text-[10px] text-gray-400">Kode Referral SPayLater:</p>
