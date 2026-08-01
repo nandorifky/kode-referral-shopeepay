@@ -1285,8 +1285,197 @@ const akhirBulan = `${lastDay} ${namaBulan} ${tahunSaja}`; //
                     </table>
                 </div>
             </div>
+        </article>
 
-            <!-- SECTION: GRATIS TRANSFER (NEW) -->
+        <!-- SECTION: BONUS TAMBAHAN HINGGA 5 JUTA -->
+        <article
+            id="bonus-tambahan"
+            class="mb-24 relative bg-gradient-to-br from-gray-900 to-black rounded-3xl p-8 md:p-12 overflow-hidden border border-gray-800 group hover:border-orange-500/30 transition-colors"
+        >
+            <!-- Decor -->
+            <div
+                class="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-shopee/10 rounded-full blur-3xl pointer-events-none group-hover:bg-shopee/20 transition-colors duration-700"
+            >
+            </div>
+
+            <div class="relative z-10">
+                <!-- Badge -->
+                <div class="flex items-center gap-3 mb-6">
+                    <span
+                        class="inline-block bg-shopee/20 text-shopee text-[10px] font-bold px-3 py-1.5 rounded-full border border-shopee/20 tracking-widest uppercase"
+                    >
+                        <i class="ph-fill ph-trophy mr-1"></i> Potensi Bonus
+                        Maksimal
+                    </span>
+                </div>
+
+                <!-- Heading -->
+                <h2
+                    class="font-display text-2xl md:text-4xl font-bold text-white mb-4 leading-tight"
+                >
+                    Dapatkan Bonus Tambahan<br />
+                    <span class="orange-gradient-text">Hingga Rp5 Juta</span>
+                </h2>
+
+                <p class="text-gray-400 text-sm md:text-base max-w-2xl mb-8 leading-relaxed">
+                    Selain bonus langsung untuk pengguna baru, kamu juga bisa
+                    mengumpulkan bonus tambahan dari program undang teman.
+                    Semakin banyak teman yang kamu undang, semakin besar
+                    total bonus yang bisa kamu dapatkan — hingga
+                    <strong class="text-white">Rp5.000.000</strong> untuk 500
+                    undangan.
+                </p>
+
+                <!-- Gambar Skema Bonus -->
+                <figure
+                    class="group/img relative rounded-2xl overflow-hidden border border-white/10 bg-black/20 cursor-pointer img-zoom-container mb-8"
+                    onclick="openLightbox(this)"
+                >
+                    <img
+                        src="https://shopeepayreferral.web.id/img/rincian-bonus-tambahan-jika-mengikuti-program-undang-teman-shopeepay.webp"
+                        alt="Skema Bonus Tambahan Referral ShopeePay - Total Hingga 5 Juta Rupiah"
+                        data-caption="Rincian Bonus Tambahan: Mulai dari 5RB (2 Undangan) hingga 4JT (500 Undangan)"
+                        class="w-full h-auto object-cover img-zoom"
+                        loading="lazy"
+                    />
+                    <div
+                        class="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                    >
+                        <span
+                            class="bg-white/10 backdrop-blur border border-white/20 px-4 py-2 rounded-full text-sm text-white font-medium"
+                            ><i class="ph-bold ph-arrows-out-simple mr-1"></i>
+                            Klik untuk Perbesar</span
+                        >
+                    </div>
+                </figure>
+
+                <!-- Tabel Rincian Bonus (Mobile-Friendly) -->
+                <div class="overflow-x-auto rounded-xl border border-white/10 mb-8">
+                    <table class="w-full min-w-[500px] text-sm text-left text-gray-400">
+                        <thead
+                            class="bg-white/5 text-gray-200 uppercase text-[10px] font-bold tracking-wider"
+                        >
+                            <tr>
+                                <th class="px-4 py-3">Jumlah Undangan</th>
+                                <th class="px-4 py-3">Bonus Per Undangan</th>
+                                <th class="px-4 py-3">Total Bonus</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5 bg-black/20">
+                            <tr class="hover:bg-white/5 transition-colors">
+                                <td class="px-4 py-3 font-medium text-white"
+                                    >2 Teman</td
+                                >
+                                <td class="px-4 py-3 text-emerald-400"
+                                    >Rp5.000</td
+                                >
+                                <td class="px-4 py-3 font-bold text-white"
+                                    >Rp10.000</td
+                                >
+                            </tr>
+                            <tr class="hover:bg-white/5 transition-colors">
+                                <td class="px-4 py-3 font-medium text-white"
+                                    >5 Teman</td
+                                >
+                                <td class="px-4 py-3 text-emerald-400"
+                                    >Rp3.000/tambahan</td
+                                >
+                                <td class="px-4 py-3 font-bold text-white"
+                                    >+Rp15.000</td
+                                >
+                            </tr>
+                            <tr class="hover:bg-white/5 transition-colors">
+                                <td class="px-4 py-3 font-medium text-white"
+                                    >10 Teman</td
+                                >
+                                <td class="px-4 py-3 text-emerald-400"
+                                    >Rp3.000/tambahan</td
+                                >
+                                <td class="px-4 py-3 font-bold text-white"
+                                    >+Rp30.000</td
+                                >
+                            </tr>
+                            <tr class="hover:bg-white/5 transition-colors">
+                                <td class="px-4 py-3 font-medium text-white"
+                                    >30 Teman</td
+                                >
+                                <td class="px-4 py-3 text-emerald-400"
+                                    >Rp5.000/tambahan</td
+                                >
+                                <td class="px-4 py-3 font-bold text-white"
+                                    >+Rp150.000</td
+                                >
+                            </tr>
+                            <tr class="hover:bg-white/5 transition-colors">
+                                <td class="px-4 py-3 font-medium text-white"
+                                    >100 Teman</td
+                                >
+                                <td class="px-4 py-3 text-emerald-400"
+                                    >Rp8.000/tambahan</td
+                                >
+                                <td class="px-4 py-3 font-bold text-white"
+                                    >+Rp800.000</td
+                                >
+                            </tr>
+                            <tr
+                                class="hover:bg-white/5 transition-colors bg-shopee/5"
+                            >
+                                <td
+                                    class="px-4 py-3 font-bold text-shopee whitespace-nowrap"
+                                >
+                                    <i class="ph-fill ph-crown mr-1"></i> 500
+                                    Teman
+                                </td>
+                                <td class="px-4 py-3 text-emerald-400 font-bold"
+                                    >Rp8.000/tambahan</td
+                                >
+                                <td
+                                    class="px-4 py-3 font-bold text-shopee text-base"
+                                    >+Rp4.000.000</td
+                                >
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Catatan Penting -->
+                <div
+                    class="bg-white/5 border border-white/10 rounded-xl p-4 flex gap-3 items-start mb-8"
+                >
+                    <div
+                        class="w-8 h-8 rounded-full bg-shopee/10 flex items-center justify-center text-shopee shrink-0 mt-0.5"
+                    >
+                        <i class="ph-fill ph-gift text-lg"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-300 leading-relaxed">
+                            <strong class="text-white">Catatan:</strong> Bonus
+                            akan otomatis ditambahkan ke saldo setelah undangan
+                            kamu diterima dan memenuhi syarat. Total bonus
+                            tergantung pada jumlah teman yang berhasil melakukan
+                            verifikasi akun (upgrade Plus).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <a
+                    href="https://pay.u.shopee.co.id/5bbddxE"
+                    onclick="handleAffiliateClick(event)"
+                    rel="sponsored noopener noreferrer"
+                    target="_blank"
+                    class="inline-flex items-center gap-2 bg-shopee hover:bg-shopee-dark text-white font-bold py-3.5 px-8 rounded-xl shadow-lg shadow-shopee/20 transition-all transform hover:-translate-y-0.5 active:scale-95 no-underline cursor-pointer group"
+                >
+                    <i class="ph-bold ph-copy-simple"></i>
+                    Mulai Undang & Klaim Bonus
+                    <i
+                        class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform"
+                    ></i>
+                </a>
+            </div>
+        </article>
+
+        <!-- SECTION: GRATIS TRANSFER (NEW) -->
             <article
                 id="free-transfer"
                 class="mb-24 relative bg-gradient-to-r from-gray-900 to-black rounded-3xl p-8 md:p-12 overflow-hidden border border-gray-800 group hover:border-orange-500/30 transition-colors"
