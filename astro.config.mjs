@@ -13,7 +13,9 @@ import markdoc from '@astrojs/markdoc';
 export default defineConfig({
   site: 'https://shopeepayreferral.web.id',
   
-  // HAPUS output: 'hybrid'. Astro 5 otomatis tau dari adapter.
+  // SSR mode: diperlukan agar middleware bisa baca Accept header saat request.
+  // Browser tetap dapat HTML. Agent yang kirim Accept: text/markdown dapat Markdown.
+  output: 'server',
   adapter: cloudflare(),
   
   integrations: [mdx(), sitemap(), keystatic(), react(), tailwind(), markdoc()],
