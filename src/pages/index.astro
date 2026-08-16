@@ -880,8 +880,7 @@ const akhirBulan = `${lastDay} ${namaBulan} ${tahunSaja}`; //
                 <p
                     class="text-gray-400 text-base md:text-lg max-w-xl mx-auto mb-10 leading-relaxed"
                 >
-                Kode referral ShopeePay yang masih aktif untuk mendapatkan bonus saldo gratis dan keuntungan pengguna baru adalah <span class="text-white font-semibold border-b border-shopee/50">JL3D5DYVW</span>.
-                Gunakan kode ini saat dafar sebagai pengguna baru dan lakukan upgrade ke ShopeePay Plus untuk mengklaim bonus saldo Rp5.000 gratis dan keuntungan pengguna baru lainnya.
+                Kode referral ShopeePay aktif terbaru adalah <span class="text-white font-semibold border-b border-shopee/50">JL3D5DYVW</span>. Masukkan kode ini saat pendaftaran pengguna baru ShopeePay, lalu selesaikan verifikasi dan upgrade ke ShopeePay Plus agar bonus saldo Rp5.000 dapat diklaim sesuai syarat promo yang berlaku.
                 </p>
 
                 <!-- HERO CARD: THE CODE -->
@@ -1405,7 +1404,7 @@ const akhirBulan = `${lastDay} ${namaBulan} ${tahunSaja}`; //
                     class="inline-flex items-center gap-2 bg-shopee hover:bg-shopee-dark text-white font-bold py-3.5 px-8 rounded-xl shadow-lg shadow-shopee/20 transition-all transform hover:-translate-y-0.5 active:scale-95 no-underline cursor-pointer group"
                 >
                     <i class="ph-bold ph-copy-simple"></i>
-                    Mulai Undang & Klaim Bonus
+                    Undang & Klaim Bonus
                     <i
                         class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform"
                     ></i>
@@ -3536,11 +3535,8 @@ const akhirBulan = `${lastDay} ${namaBulan} ${tahunSaja}`; //
                         const container =
                             document.getElementById("news-container");
 
-                        // KRITIKAL: Ganti AllOrigins dengan RSS2JSON
-                        // Ini mengubah response langsung jadi JSON (lebih cepat diparse) dan servernya lebih ngebut
-                        const rssUrl =
-                            "https://news.google.com/rss/search?q=ShopeePay+when:30d&hl=id-ID&gl=ID&ceid=ID:id";
-                        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+                        // Fetch dari internal API endpoint (server-side proxy ke Google News RSS)
+                        const apiUrl = "/api/news.json?q=ShopeePay&max=10";
 
                         fetch(apiUrl)
                             .then((response) => {
@@ -3548,11 +3544,9 @@ const akhirBulan = `${lastDay} ${namaBulan} ${tahunSaja}`; //
                                 throw new Error("Network response was not ok.");
                             })
                             .then((data) => {
-                                // RSS2JSON mengembalikan items dalam array 'items', bukan XML structure
                                 const items = data.items;
 
                                 let html = "";
-                                // Ambil maksimal 10 berita
                                 const maxItems = items
                                     ? Math.min(items.length, 10)
                                     : 0;
@@ -3566,28 +3560,15 @@ const akhirBulan = `${lastDay} ${namaBulan} ${tahunSaja}`; //
                                 for (let i = 0; i < maxItems; i++) {
                                     const item = items[i];
 
-                                    // Logic pemisah Judul - Source
-                                    let source = "Media Nasional";
-                                    let title = item.title;
+                                    // Source sudah diparse di server
+                                    const source = item.source || "Media Nasional";
+                                    const title = item.title;
 
-                                    // Google RSS via JSON kadang formatnya sedikit beda, kita handle aman
-                                    if (title.includes(" - ")) {
-                                        const parts = title.split(" - ");
-                                        // Cek kalau bagian terakhir pendek (kemungkinan nama media)
-                                        if (
-                                            parts[parts.length - 1].length < 20
-                                        ) {
-                                            source = parts.pop();
-                                        }
-                                        title = parts.join(" - ");
-                                    }
-
-                                    // Format Tanggal (RSS2JSON mengembalikan format "YYYY-MM-DD HH:mm:ss")
-                                    // Kita perlu ubah string ini ke Date object yang valid untuk Safari/Mobile
+                                    // Format Tanggal (server returns "YYYY-MM-DD HH:mm:ss")
                                     const dateStrRaw = item.pubDate.replace(
                                         /-/g,
                                         "/",
-                                    ); // Fix untuk kompatibilitas browser lama
+                                    );
                                     const dateObj = new Date(dateStrRaw);
                                     const dateStr = dateObj.toLocaleDateString(
                                         "id-ID",
@@ -3623,7 +3604,6 @@ const akhirBulan = `${lastDay} ${namaBulan} ${tahunSaja}`; //
                             })
                             .catch((error) => {
                                 console.error("Error fetching news:", error);
-                                // Fallback UI yang lebih bersih
                                 container.innerHTML = `
                     <div class="text-center bg-red-500/10 border border-red-500/20 rounded-xl p-4">
                         <p class="text-red-400 text-sm">Gagal memuat berita saat ini.</p>
